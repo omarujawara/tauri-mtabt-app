@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <table class="table table-striped table-sm">
+            <table class="table table-striped .table-condensed ">
                 <thead>
                     <tr>
                         <th scope="col" v-for="(obj, index) in config" :key="index">{{obj.title}}</th>
@@ -9,7 +9,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(row,index) in theData" :key="index">
-                        <td scope="row" v-for="(obj, index) in config" :key="index">
+                        <td class="text-truncate" scope="row" v-for="(obj, index) in config" :key="index">
                             <span v-if="obj.key === 'pubMillis'">{{ new Date(row[obj.key]).toLocaleDateString("en-US",{weekday:"long",day:"numeric",month:"long",year:"numeric"}) }}</span>
                             <span v-else>{{ row[obj.key] }}</span>
                             <span></span>
