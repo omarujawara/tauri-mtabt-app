@@ -18,7 +18,6 @@
                 </tbody>
             </table>
         </div>
-        <!-- {{config}} -->
 
     </div>
 </template>
