@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div class="container">
             <table class="table table-striped .table-condensed ">
                 <thead>
                     <tr>
@@ -8,7 +8,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(row,index) in theData" :key="index">
+                    <tr v-for="(row,index) in alerts " :key="index">
                         <td class="text-truncate" scope="row" v-for="(obj, index) in config" :key="index">
                             <span v-if="obj.key === 'pubMillis'">{{ new Date(row[obj.key]).toLocaleDateString("en-US",{weekday:"long",day:"numeric",month:"long",year:"numeric"}) }}</span>
                             <span v-else>{{ row[obj.key] }}</span>
@@ -23,13 +23,13 @@
 </template>
 
 <script>
-
+// import constants  from '../components'
 export default {
-    name : 'alert-list',
-    props : ['theData', 'config'],
+    name : 'alert-component',
+    props : ['config'],
     data : () => {
         return {
-            
+
         }
     },
     methods:{
@@ -38,13 +38,23 @@ export default {
         //     return row[obj.key]
         // }
     },
+    mounted(){
+        this.$store.dispatch('loadFeed')
+    },
     computed : {
-        }
+      alerts() {
+        return this.$store.state.alerts
+      }
+  }
     }
         
 
 </script>
 <style scoped>
+    * {
+        font-size:small;
+        max-width: 200px;
 
+    }
 </style>
 

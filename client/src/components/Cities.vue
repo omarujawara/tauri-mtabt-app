@@ -1,24 +1,23 @@
 <template>
   <div class="container">
-    <div>({{ $store.state.counter }}) </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked>
+      <input class="form-check-input" type="checkbox" @change="filterBrooklyn" id="inlineCheckbox1" v-model="this.$store.state.brooklyn" checked>
       <label class="form-check-label" for="inlineCheckbox1">Brooklyn</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" v-model="this.$store.state.bronx" checked>
       <label class="form-check-label" for="inlineCheckbox2">Bronx</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" checked>
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" v-model="this.$store.state.manhattan" checked>
       <label class="form-check-label" for="inlineCheckbox3">Manhattan</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option4" checked>
-      <label class="form-check-label" for="inlineCheckbox2">Quuens</label>
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" v-model="this.$store.state.queens" checked>
+      <label class="form-check-label" for="inlineCheckbox2">Queens</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option5" checked>
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" v-model="this.$store.state.statenIsland" checked>
       <label class="form-check-label" for="inlineCheckbox3">Staten Island</label>
     </div>
     <div>
@@ -30,24 +29,23 @@
 
 <script>
 export default {
-  name: 'cities-aa',
+  name: 'cities-component',
+  data() {
+    return {
+      bronx : true,
+      manhattan : true,
+      queens : true,
+      statenIsland : true,
+    }
+  },
+  methods : {
+    filterBrooklyn : () => {
+      this.$store.commit('filterBrooklynMutation')
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>

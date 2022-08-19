@@ -1,21 +1,29 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <Cities /> 
-  <Alert v-if="alertData" :theData="alertData" :config="config"/>
+  {{this.$store.state.testVar}}
+  <div style="float:left;">
+      <span >Traffic Feed</span>
+      <span><button @click="x" class="btn" >Export</button></span>
+  </div>
+  <div class=""><Polygon/></div>
+  <div class=""><Cities /></div> 
+  <div class=""><Alert :config="config"/></div>
 
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import Cities from './components/Cities.vue'
 import Alert from './components/Alerts.vue'
+import Polygon from './components/Polygon.vue'
 
 export default {
   name: 'App',
   components: {
     Cities,
-    Alert
-  },
+    Alert,
+    Polygon,
+},
   data : () => ({
     alertData : undefined,
     config : [
@@ -44,8 +52,8 @@ export default {
         title: 'Incident Sub Type'
       },
       {
-        key: 'Road Type Code',
-        title: 'roadType'
+        key: 'roadType',
+        title: 'Road Type'
       },
       {
         key: 'confidence',
@@ -70,25 +78,33 @@ export default {
     ],
 
   }),
-  mounted() {
-    axios.get("http://localhost:3000")
-      .then(({data}) => {
-        console.log(data.alerts)
-        this.alertData = data.alerts
-      }).catch((err) => {
-        console.log(err)
-      });   
-  },
+  methods : {
+    x:()=>{
+      this.$store.state.testVar = "RRRRR"
+    }
+  }
+
 }
 </script>
 
-<style>
+<style >
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  column-gap: normal;
+  margin-top: 20px;
+}
+.grid-child-polygon , .grid-child-cities{
+  margin-top: 20px;
 }
 </style>
+  
